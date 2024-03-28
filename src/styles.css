@@ -10,7 +10,7 @@ body {
     background-color: #252533;
     color: white;
     display: flex;
-    font: 16px Poppins, sans-serif;
+    font: 16px Share Tech Mono, monospace;
     justify-content: space-between;
     align-items: stretch;
     padding: 0 1rem;
@@ -26,14 +26,14 @@ body {
 }
 
 .site-title {
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: 700;
     margin: 0;
     padding: 1rem;
 }
 
 .nav a {
-    color: inherit;
+    color: #aaa; /* Lighter than the background but not white */
     text-decoration: none;
     padding: 14px 16px;
     height: 100%;
@@ -42,12 +42,8 @@ body {
     padding: 0.25rem;
 }
 
-/* .nav li.active {
-    background-color: #3D3D43;
-} */
-
-.nav li:hover {
-    background-color: #3D3D43;
+.nav a:hover {
+    color: white; /* Text becomes white on hover */
 }
 
 .container {
@@ -56,5 +52,5 @@ body {
     align-items: center;
     justify-content: center;
     padding: 2rem;
-    color: #252533;
+    background-color: #252533;
 }
