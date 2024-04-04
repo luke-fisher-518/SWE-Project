@@ -7,10 +7,10 @@ body {
 }
 
 .nav {
-    background-color: #252533;
+    background-color: #121217;
     color: white;
     display: flex;
-    font: 16px Share Tech Mono, monospace;
+    font: 20px Poppins, monospace;
     justify-content: space-between;
     align-items: stretch;
     padding: 0 1rem;
@@ -26,14 +26,14 @@ body {
 }
 
 .site-title {
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 700;
     margin: 0;
     padding: 1rem;
 }
 
 .nav a {
-    color: #aaa; /* Lighter than the background but not white */
+    color: #6c6a77; /* Lighter than the background but not white */
     text-decoration: none;
     padding: 14px 16px;
     height: 100%;
@@ -52,5 +52,77 @@ body {
     align-items: center;
     justify-content: center;
     padding: 2rem;
-    background-color: #252533;
+    background-color: #121217;
+}
+.item-container {
+    display: grid;
+    grid-template-rows: auto auto auto auto; /* Creates four rows */
+    grid-gap: 10px; /* Space between grid items */
+    align-items: center; /* Center items vertically */
+    justify-items: center; /* Center items horizontally */
+    background-color: #1C1D26; /* slightly lighter than the background */
+    border-radius: 3px; /* rounded corners */
+    padding: 20px;
+    margin: 10px;
+}
+
+
+.item-image {
+    width: 100px;
+    height: 100px;
+    object-fit: contain; /* This will ensure that the image fits within its box */
+}
+
+.item-image, .item-name, .item-price {
+    max-width: 100%; /* This will ensure that the content does not exceed the width of the container */
+    height: auto; /* This will maintain the aspect ratio of the images */
+}
+
+.item-name {
+    color: #aaa; /* slightly lighter color */
+    font-size: 12pt;
+    font: Poppins, sans-serif;
+}
+
+.item-price {
+    color: white;
+    font: Poppins, sans-serif;
+    font-size: 18pt;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 20%; /* adjust as needed */
+    padding: 10px;
+    border-right: 1px solid #aaa;
+}
+
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* adjust as needed */
+    gap: 10px;
+    width: 80%; /* adjust as needed */
+    padding: 10px;
+}
+
+
+.buy-button {
+    background-color: #2425DB; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    font: Poppins, sans-serif;
+}
+
+.buy-button:hover {
+    background-color: #4d4de0; /* Light green */
 }

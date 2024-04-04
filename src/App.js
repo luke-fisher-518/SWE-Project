@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import logo from './steam-tracker-logo.svg';
 import './App.css';
 import Navbar from './Navbar';
 import { Component } from 'react';
@@ -28,10 +28,6 @@ function App() {
     </div>
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Steam Tracker
-        </p>
       </header>
     </div>
     </>
