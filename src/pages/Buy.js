@@ -10,17 +10,15 @@ export default function Buy() {
     ];
 
     return (
-        <div>
-            <div className="items-grid">
-                {items.map(item => (
-                    <div className="item-container" key={item.id}>
-                        <img className="item-image" src={item.image} alt={item.name} />
-                        <h2 className="item-name">{item.name}</h2>
-                        <p className="item-price">${item.price}</p>
-                        <button className="buy-button">Buy</button>
-                    </div>
-                ))}
-            </div>
+        <div className="items-grid">
+            {items.map(item => (
+                <div className="item-container" key={item.id}>
+                    <img className="item-image" src={item.image} alt={item.name} />
+                    <h2 className="item-name">{item.name}</h2>
+                    <p className="item-price">${item.price}</p>
+                    <button className="buy-button">Buy</button>
+                </div>
+            ))}
         </div>
     );
 }
