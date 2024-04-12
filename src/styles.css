@@ -2,6 +2,13 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'Robot9000';
+    src: url('./fonts/Robot9000.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     margin: 0;
 }
@@ -32,7 +39,7 @@ body {
 }
 
 .site-title img {
-    height: 100px; /* or your desired height */
+    height: 70px; /* or your desired height */
     width: auto;  /* maintains aspect ratio */
 }
 
@@ -49,10 +56,6 @@ body {
     color: white; /* Text becomes white on hover or when active */
 }
 
-.nav a:hover {
-    color: white; /* Text becomes white on hover */
-}
-
 .nav a, .nav a:hover, .nav a:focus {
     color: #6c6a77; /* Default state color */
     text-decoration: none;
@@ -63,7 +66,6 @@ body {
 
 .nav li.active a {
     border-top: 3px solid #4d4de0; /* Purple bar on top of the active link */
-    
 }
 
 .nav ul {
@@ -135,6 +137,7 @@ body {
     padding: 20px;
     position: relative; /* Needed for absolute positioning of the buy button */
     height: 100%; /* Ensure all containers are of equal height */
+    transition: background-color 0.15s; /* Smooth transition for hover effect */
 }
 
 .item-image {
@@ -169,12 +172,85 @@ body {
     border: none; /* No border */
     border-radius: 4px; /* Rounded corners for the button */
     cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.15s; /* Smooth transition for hover effect */
 }
 
 .buy-button:hover {
     background-color: #252599; /* Lighter shade of button color on hover */
 }
 
+.buy-button:active {
+    background-color: #1E1F8A; /* Darker shade of button color on click */
+}/* animate transition for the button */
+
+
 .item-container:hover {
     background-color: #313244; /* Lighter shade of background color on hover */
 }
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    background-color: #1C1D26;
+    padding: 20px;
+    border-radius: 5px;
+    width: 500px;
+    max-height: 90%;
+    overflow-y: auto;
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: white;
+    font-family: Poppins, sans-serif;
+}
+
+.modal-body {
+    color: white;
+    font-family: Poppins, sans-serif;
+    margin-bottom: 10px;
+    img {
+        width: 200px;
+        height: auto;
+        border-radius: 5px;
+    }
+}
+
+.modal-header, .modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header {
+    border-bottom: 1px solid #ddd;
+}
+
+.modal-footer {
+    border-top: 1px solid #1C1D26;
+}
+
+.close-button {
+    cursor: pointer;
+}
+.user-img {
+    height: 30px;
+    width: auto;
+    object-fit: cover; /* Ensures the image covers the area, useful if the images aren't perfectly square */
+    border-radius: 50%;  /* Optional: makes the image round */
+    background-color: #000; /* Fallback color */
+}
+

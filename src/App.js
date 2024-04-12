@@ -1,11 +1,10 @@
-import logo from './steam-tracker-logo.svg';
 import './App.css';
 import Navbar from './Navbar';
 import { Component } from 'react';
 import Buy from './pages/Buy';
 import Sell from './pages/Sell';
 import Trade from './pages/Trade';
-import Inventory from './pages/Inventory';
+import User from './pages/User';
 import About from './pages/About';
 import Home from './pages/Home';
 import {Route, Routes} from 'react-router-dom';
@@ -22,7 +21,7 @@ function App() {
         <Route path="/Trade" element={<Trade />} />
         <Route path="/Sell" element={<Sell />} />
         <Route path="/Buy" element={<Buy />} />
-        <Route path="/Inventory" element={<Inventory />} />
+        <Route path="/User" element={<User />} />
         <Route path="/About" element={<About />} />
       </Routes>
     </div>
