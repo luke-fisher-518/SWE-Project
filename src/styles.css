@@ -250,7 +250,7 @@ body {
 }
 .user-img {
     /*add border*/
-    border: 2px solid #fff;
+    border: 3px solid #6c6a77;
     height: 30px;
     width: 30px;
     object-fit: cover; /* Ensures the image covers the area, useful if the images aren't perfectly square */
@@ -258,3 +258,26 @@ body {
     background-color: #000; /* Fallback color */
 }
 
+.save-button {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 20px;
+    width: auto; /* Adjust width automatically */
+    margin: 10px 0; /* Vertical margin for spacing */
+    color: white; /* Text color */
+    background-color: #2425DB; /* Background color */
+    border: none; /* No border */
+    border-radius: 10px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: all 0.3s ease; /* Transition for smooth effect */
+    position: relative; /* Relative positioning for pseudo-elements */
+}
+
+.save-button:hover {
+    background-color: #252599; /* Slightly darker shade on hover */
+}
+
+.save-button:active {
+    background-color: #1E1F8A; /* Even darker on click */
+}

@@ -2,6 +2,21 @@ import React, { useContext, useState } from 'react';
 import UserContext from '../UserContext';
 import AvatarEditor from 'react-avatar-editor';
 
+
+// User Profile Component
+const UserProfile = ({ name, accountName, image, onImageUpload, showEditor, onScaleChange, scale, onSaveImage }) => {
+    // ...
+};
+
+// Inventory Component
+const Inventory = ({ items }) => {
+    // ...
+};
+
+// Seller Insights Component
+const SellerInsights = ({ insights }) => {
+    // ...
+};
 export default function User() {
     const {setUserImage} = useContext(UserContext);
     const [image, setImage] = useState(null);
@@ -44,6 +59,19 @@ export default function User() {
                     />
                     <input type="range" min="1" max="3" step="0.01" value={scale} onChange={handleScaleChange} />
                     <button className="save-button" onClick={saveImage}>Save</button>
+
+                    <UserProfile 
+                        name="User Name" 
+                        accountName="Account Name" 
+                        image={image} 
+                        onImageUpload={handleImageUpload} 
+                        showEditor={showEditor} 
+                        onScaleChange={handleScaleChange} 
+                        scale={scale} 
+                        onSaveImage={saveImage} 
+                    />
+                    <Inventory items={["Item 1", "Item 2", "Item 3"]} />
+                    <SellerInsights insights={["Insight 1", "Insight 2", "Insight 3"]} />
                 </div>
             )}
         </div>

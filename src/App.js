@@ -11,7 +11,7 @@ import Home from './pages/Home';
 import {Route, Routes} from 'react-router-dom';
 
 function App() {
-  const [userImage, setUserImage] = useState('./img/user.svg');
+  const [userImage, setUserImage] = useState('./img/user-img.svg');
   return (
     <UserContext.Provider value={{ userImage, setUserImage }}>
     <Navbar />
