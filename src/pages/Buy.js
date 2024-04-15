@@ -8,8 +8,36 @@ export default function Buy() {
     const [selectedItem, setSelectedItem] = useState(null);
 
     const items = [
-        { id: 1, name: 'Asiimov-MW', price: 50.16, image: asiimov },
-        { id: 2, name: 'Stiletto Knife "Vanilla"', price: 400.05, image: stiletto },
+        { 
+            id: 1, 
+            name: 'Asiimov-MW', 
+            price: 50.16, 
+            image: asiimov, 
+            color: 'Black', 
+            previousPrice: 55.00, 
+            averagePrice: 52.00, 
+            minPrice: 45.00, 
+            maxPrice: 60.00,
+            group: 'Rifle', 
+            type: 'AK-47', 
+            rarity: 'Covert', 
+            quality: 'Factory New' 
+        },
+        { 
+            id: 2, 
+            name: 'Stiletto Knife "Vanilla"', 
+            price: 400.05, 
+            image: stiletto, 
+            color: 'Silver', 
+            previousPrice: 420.00, 
+            averagePrice: 410.00, 
+            minPrice: 390.00, 
+            maxPrice: 430.00,
+            group: 'Melee', 
+            type: 'Knife', 
+            rarity: 'Covert', 
+            quality: 'Minimal Wear' 
+        },
         // add more items as needed
     ];
 

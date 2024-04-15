@@ -1,6 +1,7 @@
 import './App.css';
+import React, { useState } from 'react';
+import UserContext from './UserContext';
 import Navbar from './Navbar';
-import { Component } from 'react';
 import Buy from './pages/Buy';
 import Sell from './pages/Sell';
 import Trade from './pages/Trade';
@@ -10,9 +11,9 @@ import Home from './pages/Home';
 import {Route, Routes} from 'react-router-dom';
 
 function App() {
-  
+  const [userImage, setUserImage] = useState('./img/user.svg');
   return (
-    <>
+    <UserContext.Provider value={{ userImage, setUserImage }}>
     <Navbar />
     
     <div className="container">
@@ -29,7 +30,7 @@ function App() {
       <header className="App-header">
       </header>
     </div>
-    </>
+    </UserContext.Provider>
   );
 }
 

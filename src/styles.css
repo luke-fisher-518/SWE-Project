@@ -199,6 +199,7 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 9999;
+    transition: 0.3s;
 }
 
 .modal-content {
@@ -221,6 +222,7 @@ body {
 .modal-body {
     color: white;
     font-family: Poppins, sans-serif;
+    font-style: normal;
     margin-bottom: 10px;
     img {
         width: 200px;
@@ -247,8 +249,10 @@ body {
     cursor: pointer;
 }
 .user-img {
+    /*add border*/
+    border: 2px solid #fff;
     height: 30px;
-    width: auto;
+    width: 30px;
     object-fit: cover; /* Ensures the image covers the area, useful if the images aren't perfectly square */
     border-radius: 50%;  /* Optional: makes the image round */
     background-color: #000; /* Fallback color */

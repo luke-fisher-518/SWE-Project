@@ -1,6 +1,9 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
+import React, { useContext } from 'react';
+import UserContext from './UserContext';
 
 export default function Navbar() {
+    const { userImage } = useContext(UserContext);
     return (
         <nav className="nav">
             <Link to="/" className="site-title">
@@ -12,7 +15,7 @@ export default function Navbar() {
                 <CustomLink to="/Buy">Buy</CustomLink>
                 <CustomLink to="/About">About</CustomLink>
                 <CustomLink to="/User">
-                    <img src="/img/user-img.svg" alt="User" className="user-img"/>
+                    <img className = "user-img" src={userImage} alt="User" />
                 </CustomLink>
                 
             </ul>
