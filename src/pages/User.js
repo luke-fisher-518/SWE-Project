@@ -2,21 +2,64 @@ import React, { useContext, useState } from 'react';
 import UserContext from '../UserContext';
 import AvatarEditor from 'react-avatar-editor';
 
-
 // User Profile Component
-const UserProfile = ({ name, accountName, image, onImageUpload, showEditor, onScaleChange, scale, onSaveImage }) => {
-    // ...
+// User Profile Component
+const UserProfile = ({ name, accountName, image, onImageUpload, showEditor, onScaleChange, scale, onSaveImage, editorRef }) => {
+    return (
+        <div>
+            <h2>{name}</h2>
+            <h3>{accountName}</h3>
+            <div className="image-upload">
+                <img src={image} alt="User" className="profile-image" />
+                <input type="file" onChange={onImageUpload} className="file-input" />
+            </div>
+            {showEditor && (
+                <div>
+                    <AvatarEditor
+                        ref={editorRef}
+                        image={image}
+                        width={100}
+                        height={100}
+                        border={50}
+                        color={[255, 255, 255, 0.6]} // RGBA
+                        scale={scale}
+                        onScaleChange={onScaleChange}
+                    />
+                    <button onClick={onSaveImage}>Save</button>
+                </div>
+            )}
+        </div>
+    );
 };
 
 // Inventory Component
 const Inventory = ({ items }) => {
-    // ...
+    return (
+        <div>
+            <h2>Inventory</h2>
+            <ul>
+                {items.map((item, index) => (
+                    <li key={index}>{item}</li>
+                ))}
+            </ul>
+        </div>
+    );
 };
 
-// Seller Insights Component
-const SellerInsights = ({ insights }) => {
-    // ...
+// Recent Activity Component
+const RecentActivity = ({ activities }) => {
+    return (
+        <div>
+            <h2>Recent Activity</h2>
+            <ul>
+                {activities.map((activity, index) => (
+                    <li key={index}>{activity}</li>
+                ))}
+            </ul>
+        </div>
+    );
 };
+
 export default function User() {
     const {setUserImage} = useContext(UserContext);
     const [image, setImage] = useState(null);
@@ -45,35 +88,19 @@ export default function User() {
     return (
         <div>
             <h1>User</h1>
-            <input type="file" onChange={handleImageUpload} />
-            {showEditor && (
-                <div>
-                    <AvatarEditor
-                        ref={editorRef}
-                        image={image}
-                        width={200}
-                        height={200}
-                        border={50}
-                        color={[255, 255, 255, 0.6]} // RGBA
-                        scale={scale}
-                    />
-                    <input type="range" min="1" max="3" step="0.01" value={scale} onChange={handleScaleChange} />
-                    <button className="save-button" onClick={saveImage}>Save</button>
-
-                    <UserProfile 
-                        name="User Name" 
-                        accountName="Account Name" 
-                        image={image} 
-                        onImageUpload={handleImageUpload} 
-                        showEditor={showEditor} 
-                        onScaleChange={handleScaleChange} 
-                        scale={scale} 
-                        onSaveImage={saveImage} 
-                    />
-                    <Inventory items={["Item 1", "Item 2", "Item 3"]} />
-                    <SellerInsights insights={["Insight 1", "Insight 2", "Insight 3"]} />
-                </div>
-            )}
+            <UserProfile 
+                name="User Name" 
+                accountName="Account Name" 
+                image={image} 
+                onImageUpload={handleImageUpload} 
+                showEditor={showEditor} 
+                onScaleChange={handleScaleChange} 
+                scale={scale} 
+                onSaveImage={saveImage} 
+                editorRef={editorRef}
+            />
+            <Inventory items={["Item 1", "Item 2", "Item 3"]} />
+            <RecentActivity activities={["Purchased Item 1", "Traded Item 2", "Purchased Item 3"]} />
         </div>
     );
 }

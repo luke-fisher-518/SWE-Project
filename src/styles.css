@@ -281,3 +281,14 @@ body {
 .save-button:active {
     background-color: #1E1F8A; /* Even darker on click */
 }
+
+.profile-image {
+    transition: transform 0.3s ease-in-out;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.profile-image:hover {
+    transform: scale(1.1);
+}
