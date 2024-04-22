@@ -3,29 +3,50 @@ import UserContext from '../UserContext';
 import AvatarEditor from 'react-avatar-editor';
 
 // User Profile Component
-// User Profile Component
 const UserProfile = ({ name, accountName, image, onImageUpload, showEditor, onScaleChange, scale, onSaveImage, editorRef }) => {
+    const fileInputRef = React.useRef(null);
+
+    const handleImageClick = () => {
+        fileInputRef.current.click();
+    };
+
     return (
         <div>
             <h2>{name}</h2>
             <h3>{accountName}</h3>
-            <div className="image-upload">
-                <img src={image} alt="User" className="profile-image" />
-                <input type="file" onChange={onImageUpload} className="file-input" />
+            <div className="image-upload" onClick={handleImageClick}>
+                <img src={image} alt="User" className="profile-image" style={{ cursor: 'pointer' }}/>
+                <input
+                    type="file"
+                    onChange={onImageUpload}
+                    className="file-input"
+                    ref={fileInputRef}
+                    style={{ display: 'none' }}  // Hide the file input
+                />
             </div>
             {showEditor && (
                 <div>
                     <AvatarEditor
                         ref={editorRef}
                         image={image}
-                        width={100}
-                        height={100}
+                        width={250}
+                        height={250}
                         border={50}
+                        borderRadius={125}
                         color={[255, 255, 255, 0.6]} // RGBA
                         scale={scale}
-                        onScaleChange={onScaleChange}
+                        rotate={0}
                     />
-                    <button onClick={onSaveImage}>Save</button>
+                    <input
+                        type="range"
+                        onChange={onScaleChange}
+                        min="1"
+                        max="2"
+                        step="0.01"
+                        defaultValue="1"
+                        style={{ width: '100%' }}
+                    />
+                    <button className="save-button" onClick={onSaveImage}>Save</button>
                 </div>
             )}
         </div>
@@ -61,17 +82,21 @@ const RecentActivity = ({ activities }) => {
 };
 
 export default function User() {
-    const {setUserImage} = useContext(UserContext);
-    const [image, setImage] = useState(null);
+    const { userImage, setUserImage } = useContext(UserContext);
     const [scale, setScale] = useState(1);
     const [showEditor, setShowEditor] = useState(false);
     const editorRef = React.useRef(null);
 
     const handleImageUpload = (event) => {
-        const file = event.target.files[0];
-        setImage(URL.createObjectURL(file));
-        setShowEditor(true);
+        const file = event.target.files[0]; // Get the selected file
+        if (file) { // Check if the file exists
+            setUserImage(URL.createObjectURL(file)); // Create a URL for the file
+            setShowEditor(true); // Show the editor
+        } else {
+            setShowEditor(false); // Hide the editor if no file is selected
+        }
     };
+    
 
     const handleScaleChange = (event) => {
         setScale(parseFloat(event.target.value));
@@ -86,12 +111,12 @@ export default function User() {
     };
 
     return (
-        <div>
-            <h1>User</h1>
+        <div className="user-container">
+        <div className="user-profile-container">
             <UserProfile 
                 name="User Name" 
                 accountName="Account Name" 
-                image={image} 
+                image={userImage}
                 onImageUpload={handleImageUpload} 
                 showEditor={showEditor} 
                 onScaleChange={handleScaleChange} 
@@ -99,8 +124,13 @@ export default function User() {
                 onSaveImage={saveImage} 
                 editorRef={editorRef}
             />
+        </div>
+        <div className="inventory-container">
             <Inventory items={["Item 1", "Item 2", "Item 3"]} />
+        </div>
+        <div className="recent-activity-container">
             <RecentActivity activities={["Purchased Item 1", "Traded Item 2", "Purchased Item 3"]} />
         </div>
+    </div>
     );
 }
