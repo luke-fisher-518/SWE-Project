@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import ItemCard from './ItemCard';
+import Modal from './Modal';
 import asiimov from './img/asiimov-mw.png';
 import stiletto from './img/stiletto-knife-vanilla.png';
-import Modal from './Modal'; // import your Modal component
 
 export default function Buy() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -51,16 +52,11 @@ export default function Buy() {
     };
 
     return (
-        <div className="items-grid">
-            {items.map(item => (
-                <div className="item-container" key={item.id} onClick={() => handleItemClick(item)}>
-                    <img className="item-image" src={item.image} alt={item.name} />
-                    <h2 className="item-name">{item.name}</h2>
-                    <p className="item-price">${item.price}</p>
-                    <button className="buy-button">Buy</button>
-                </div>
-            ))}
-            {isModalOpen && <Modal item={selectedItem} closeModal={closeModal} />}
-        </div>
-    );
+    <div className="items-grid">
+        {items.map(item => (
+            <ItemCard item={item} handleItemClick={handleItemClick} />
+        ))}
+        {isModalOpen && <Modal item={selectedItem} closeModal={closeModal} />}
+    </div>
+);
 }

@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
 import UserContext from '../UserContext';
 import AvatarEditor from 'react-avatar-editor';
+import ItemCard from './ItemCard';
+import Modal from './Modal';
 
 // User Profile Component
 const UserProfile = ({ name, accountName, image, onImageUpload, showEditor, onScaleChange, scale, onSaveImage, editorRef }) => {
@@ -9,6 +11,7 @@ const UserProfile = ({ name, accountName, image, onImageUpload, showEditor, onSc
     const handleImageClick = () => {
         fileInputRef.current.click();
     };
+    
 
     return (
         <div>
@@ -55,14 +58,25 @@ const UserProfile = ({ name, accountName, image, onImageUpload, showEditor, onSc
 
 // Inventory Component
 const Inventory = ({ items }) => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null);
+    const handleItemClick = (item) => {
+        setSelectedItem(item);
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
     return (
         <div>
             <h2>Inventory</h2>
-            <ul>
-                {items.map((item, index) => (
-                    <li key={index}>{item}</li>
+            <div className="items-grid">
+                {items.map(item => (
+                    <ItemCard item={item}  handleItemClick={handleItemClick} showBuyButton={false} />
                 ))}
-            </ul>
+                {isModalOpen && <Modal item={selectedItem} closeModal={closeModal} />}
+            </div>
         </div>
     );
 };
@@ -82,7 +96,7 @@ const RecentActivity = ({ activities }) => {
 };
 
 export default function User() {
-    const { userImage, setUserImage } = useContext(UserContext);
+    const { userImage, setUserImage, userName, setUserName, accountName, setAccountName, inventory, setInventory, recentActivity, setRecentActivity } = useContext(UserContext);
     const [scale, setScale] = useState(1);
     const [showEditor, setShowEditor] = useState(false);
     const editorRef = React.useRef(null);
@@ -112,25 +126,25 @@ export default function User() {
 
     return (
         <div className="user-container">
-        <div className="user-profile-container">
-            <UserProfile 
-                name="User Name" 
-                accountName="Account Name" 
-                image={userImage}
-                onImageUpload={handleImageUpload} 
-                showEditor={showEditor} 
-                onScaleChange={handleScaleChange} 
-                scale={scale} 
-                onSaveImage={saveImage} 
-                editorRef={editorRef}
-            />
+            <div className="user-profile-container">
+                <UserProfile 
+                    name={userName} 
+                    accountName={accountName} 
+                    image={userImage}
+                    onImageUpload={handleImageUpload} 
+                    showEditor={showEditor} 
+                    onScaleChange={handleScaleChange} 
+                    scale={scale} 
+                    onSaveImage={saveImage} 
+                    editorRef={editorRef}
+                />
+            </div>
+            <div className="inventory-container">
+                <Inventory items={inventory}/>
+            </div>
+            <div className="recent-activity-container">
+                <RecentActivity activities={recentActivity} />
+            </div>
         </div>
-        <div className="inventory-container">
-            <Inventory items={["Item 1", "Item 2", "Item 3"]} />
-        </div>
-        <div className="recent-activity-container">
-            <RecentActivity activities={["Purchased Item 1", "Traded Item 2", "Purchased Item 3"]} />
-        </div>
-    </div>
     );
 }

@@ -215,6 +215,7 @@ body {
     width: 500px;
     max-height: 90%;
     overflow-y: auto;
+    position: relative;
 }
 
 .modal-title {
@@ -267,25 +268,26 @@ body {
 }
 
 .user-container {
+    color: white;
     display: grid;
-    grid-template-columns: 300px 1fr; /* User profile fixed width and remaining space for other sections */
-    grid-template-rows: 1fr; /* Single row to manage height collectively */
-    height: 100vh; /* Make the container take up full viewport height */
+    grid-template-columns: 1fr 3fr; /* Adjusted to give more space to the right side containers */
+    grid-template-rows: 1fr 1fr;
+    height: 100vh;
     padding: 20px;
-    gap: 20px; /* Space between the columns */
-    background-color: #121217; /* Optional: Background color for the entire user container */
-    align-items: start; /* Aligns items to the top of the container */
+    gap: 20px;
+    background-color: #121217;
+    align-items: start;
 }
 
 .user-profile-container {
+    grid-row: 1 / 3;
     background-color: #262734;
     border-radius: 8px;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Vertically center the contents */
-    align-items: center; /* Horizontally center the contents */
-    height: 100%; /* Full height to match the stacked containers */
+    align-items: center;
+    height: auto;
 }
 
 .inventory-container, .recent-activity-container {
@@ -295,12 +297,12 @@ body {
     background-color: #262734;
     border-radius: 8px;
     padding: 20px;
-    overflow-y: auto; /* Allows scrolling within the section if content is too long */
-    height: 50%; /* Each takes half of the total available height next to the profile */
+    overflow-y: auto;
+    height: 100%;
 }
 
 .recent-activity-container {
-
+    grid-row: 2;
 }
 
 /* Styling for images and buttons remain the same */

@@ -2,8 +2,16 @@
 import React from 'react';
 
 const UserContext = React.createContext({
-    userImage: '../img/user-img.svg',
+    userImage: '',
+    userName: '',
+    accountName: '',
+    inventory: [],
+    recentActivity: [],
     setUserImage: () => {},
+    setUserName: () => {},
+    setAccountName: () => {},
+    setInventory: () => {},
+    setRecentActivity: () => {},
 });
 
 export default UserContext;
