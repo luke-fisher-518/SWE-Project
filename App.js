@@ -1,82 +1,54 @@
-import logo from './logo.svg';
 import './App.css';
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
+import UserContext from './UserContext';
+import Navbar from './Navbar';
+import Buy from './pages/Buy';
+import Sell from './pages/Sell';
+import Trade from './pages/Trade';
+import User from './pages/User';
+import About from './pages/About';
+import Home from './pages/Home';
+import LoginScr from './pages/loginScr';
+import {Link, Route, Routes} from 'react-router-dom';
+//import LoginScr from "./pages/loginScr";
 
 function App() {
-    const username = ["test", "Cade", "Luke", "Michael"]
-    const password = ["password", "password", "password", "password"]
-    const [user, setuser] = useState("")
-    const [pass, setpass] = useState("")
-    const [status, setstatus] = useState("")
-    const check_log = () => {
-        let t = false
-        for (let i = 0; i < username.length; i++) {
-            if (username[i] == user){
-                if (password[i] == pass){
-                    t = !t
-                    break
-                }
-            }
-        }
-        if (t){
-            setstatus("Successful Login")
-        }else{
-            setstatus("Incorrect Username/Password")
-        }
-    }
-    const check_reg = () => {
-        let t = true
-        for (let i = 0; i < username.length; i++) {
-            if (username[i] == user){
-                t = !t
-                break
-            }
-        }
-        if (t){
+  const [userImage, setUserImage] = useState('./img/user-img.svg');
+  const [apiResponse, setApiResponse] = useState("");
 
-            setstatus("Successful Registration")
-            console.log("Username: ", user)
-            console.log("Password: ", pass)
-            username.push(user)
-            password.push(pass)
-        }else{
-            setstatus("Unsuccessful Registration")
-        }
+  const callAPI = () => {
+      fetch("http://localhost:9000/testAPI")
+          .then(res => res.text())
+          .then(res => setApiResponse(res))
+          .catch(err => console.error("Error fetching data:", err));
+  };
 
+  useEffect(() => {
+      callAPI();
+  }, []);  // Empty dependency array means this effect will only run once, similar to componentDidMount
 
-
-    }
   return (
+    <UserContext.Provider value={{ userImage, setUserImage }}>
+      <Navbar />
+      <div className="container">
+        <Routes>
 
-      <div className="Title">
-          <h1>SteamTrackers
-          </h1>
-
+            <Route path="/" element={<Home />} />
+            <Route path="/trade" element={<Trade />} />
+            <Route path="/sell" element={<Sell />} />
+            <Route path="/buy" element={<Buy />} />
+            <Route path="/user" element={<User />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/login" element={<LoginScr />} />
+        </Routes>
+      </div>
       <div className="App">
-
-          <div className="Login">
-              <h1>Login
-              </h1>
-              <div className="User">
-                  <input type="text" placeholder="Username"
-                         onChange={(e) => setuser(e.target.value)}/>
-              </div>
-              <div className="Pass">
-                  <input type="text" placeholder="Password"
-                         onChange={(e) => setpass(e.target.value)}/>
-              </div>
-              <div className="Status">
-                  <label>{status}</label>
-              </div>
-              <div className="LB">
-                  <button onClick={check_log}>Login</button>
-              </div>
-              <div className="RB">
-              <button onClick={check_reg}>Register</button>
-              </div>
-          </div>
+        <header className="App-header">
+          {/* You can add header content here if needed */}
+        </header>
+        <p className="App-intro">{apiResponse}</p>
       </div>
-      </div>
+    </UserContext.Provider>
   );
 }
 
