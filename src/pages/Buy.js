@@ -1,12 +1,23 @@
 import React, { useState } from 'react';
 import ItemCard from './ItemCard';
 import Modal from './Modal';
+import SearchBar from '../SearchBar';
+import Filters from '../Filters';
 import asiimov from './img/asiimov-mw.png';
 import stiletto from './img/stiletto-knife-vanilla.png';
 
 export default function Buy() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filters, setFilters] = useState({
+        color: '',
+        rarity: '',
+        quality: '',
+        type: '',
+        minPrice: 0,
+        maxPrice: Infinity
+    });
 
     const items = [
         { 
@@ -19,8 +30,7 @@ export default function Buy() {
             averagePrice: 52.00, 
             minPrice: 45.00, 
             maxPrice: 60.00,
-            group: 'Rifle', 
-            type: 'AK-47', 
+            type: 'Rifle', 
             rarity: 'Covert', 
             quality: 'Factory New' 
         },
@@ -34,7 +44,6 @@ export default function Buy() {
             averagePrice: 410.00, 
             minPrice: 390.00, 
             maxPrice: 430.00,
-            group: 'Melee', 
             type: 'Knife', 
             rarity: 'Covert', 
             quality: 'Minimal Wear' 
@@ -51,12 +60,37 @@ export default function Buy() {
         setIsModalOpen(false);
     };
 
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const handleFilterChange = (event) => {
+        setFilters({
+            ...filters,
+            [event.target.name]: event.target.value
+        });
+    };
+
+    const filteredItems = items.filter(item => {
+        return item.name.toLowerCase().includes(searchTerm.toLowerCase())
+            && item.color.toLowerCase().includes(filters.color.toLowerCase())
+            && item.rarity.toLowerCase().includes(filters.rarity.toLowerCase())
+            && item.quality.toLowerCase().includes(filters.quality.toLowerCase())
+            && item.type.toLowerCase().includes(filters.type.toLowerCase())
+            && item.price >= filters.minPrice
+            && item.price <= filters.maxPrice;
+    });
+
     return (
-    <div className="items-grid">
-        {items.map(item => (
-            <ItemCard item={item} handleItemClick={handleItemClick} />
-        ))}
-        {isModalOpen && <Modal item={selectedItem} closeModal={closeModal} />}
+        <div>
+        <SearchBar searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
+        <Filters filters={filters} handleFilterChange={handleFilterChange} />
+        <div className="items-grid">
+            {filteredItems.map(item => (
+                <ItemCard key={item.id} item={item} handleItemClick={handleItemClick} />
+            ))}
+            {isModalOpen && <Modal item={selectedItem} closeModal={closeModal} />}
+        </div>
     </div>
 );
 }

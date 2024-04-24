@@ -1,6 +1,27 @@
 import React from 'react';
 
-const Modal = ({ item, closeModal }) => {
+function getRarityColor(rarity) {
+    switch (rarity.toLowerCase()) {
+        case 'consumer grade' || 'base grade':
+            return 'grey';
+        case 'industrial grade':
+            return 'lightblue';
+        case 'mil-spec'|| 'high grade':
+            return 'blue';
+        case 'restricted' || 'remarkable':
+            return 'purple';
+        case 'classified' || 'exotic':
+            return 'pink';
+        case 'covert' || 'extraordinary':
+            return 'red';
+        case 'contraband':
+            return 'gold';
+        default:
+            return 'black';
+    }
+}
+
+const Modal = ({ item, closeModal, showBuyButton = true }) => {
     return (
         <div className="modal" onClick={closeModal}>
             <div className="modal-content" onClick={e => e.stopPropagation()}>
@@ -11,17 +32,16 @@ const Modal = ({ item, closeModal }) => {
                 <div className="modal-body">
                     <img src={item.image} alt={item.name} />
                     <p>Price: ${item.price}</p>
-                    <p>Color: {item.color}</p>
+                    <p>Color: <span style={{ color: item.color }}>{item.color}</span></p>
                     <p>Previous Selling Price: ${item.previousPrice}</p>
                     <p>Price Average: ${item.averagePrice}</p>
                     <p>Minimum Sold Price: ${item.minPrice}</p>
-                    <p>Item Group: {item.group}</p>
                     <p>Item Type: {item.type}</p>
-                    <p>Rarity: {item.rarity}</p>
+                    <p>Rarity: <span style={{ color: getRarityColor(item.rarity), fontFamily: 'Kode Mono' }}>{item.rarity}</span></p>
                     <p>Quality: {item.quality}</p>
                 </div>
                 <div className="modal-footer">
-                    <button className="buy-button">Buy</button>
+                    {showBuyButton && <button className="buy-button">Buy</button>}
                 </div>
             </div>
         </div>

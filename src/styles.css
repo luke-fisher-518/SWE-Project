@@ -9,8 +9,17 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Kode Mono';
+    src: url('./fonts/KodeMono.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 body {
     margin: 0;
+    width: 100%;
 }
 
 /*Navbar css*/
@@ -18,11 +27,12 @@ body {
     background-color: #121217;
     color: white;
     display: flex;
-    font: 20px Poppins, monospace;
+    font: 24px Poppins, monospace;
     justify-content: space-between;
     align-items: stretch;
     padding: 0 1rem;
     gap: 2rem;
+    transition: 0.3s;
 }
 
 .nav ul {
@@ -40,7 +50,7 @@ body {
 }
 
 .site-title img {
-    height: 70px; /* or your desired height */
+    height: 120px; /* or your desired height */
     width: auto;  /* maintains aspect ratio */
 }
 
@@ -230,6 +240,7 @@ body {
     color: white;
     font-family: Poppins, sans-serif;
     font-style: normal;
+    font-size: 12px;
     margin-bottom: 10px;
     img {
         width: 200px;
@@ -341,3 +352,48 @@ body {
 .save-button:active {
     background-color: #1E1F8A;
 }
+
+/* Filters and Searching*/
+.filter-category {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #121217;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+    font-family: Kode Mono, monospace;
+}
+
+.filter-category:hover {
+    background-color: #121217;
+}
+
+.search-bar {
+    padding: 10px;
+    border-radius: 30px;
+    border: 1px solid #1C1D26;
+    background-color: #1C1D26;
+    color: white;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+fieldset {
+    margin-top: 10px;
+    /* order vertically */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: white;
+    font-family: Kode Mono, monospace;
+    /* No border*/
+    border: none;
+}
+
+legend {
+    font-weight: bold;
+    color: White
+}
+
+
+

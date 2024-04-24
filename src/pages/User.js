@@ -75,7 +75,7 @@ const Inventory = ({ items }) => {
                 {items.map(item => (
                     <ItemCard item={item}  handleItemClick={handleItemClick} showBuyButton={false} />
                 ))}
-                {isModalOpen && <Modal item={selectedItem} closeModal={closeModal} />}
+                {isModalOpen && <Modal item={selectedItem} closeModal={closeModal} showBuyButton={false}/>}
             </div>
         </div>
     );
