@@ -132,6 +132,7 @@ export default function Navbar() {
 
     if(ch) {
         const check = () => {
+            setusera("")
             setch(false)
         }
 
