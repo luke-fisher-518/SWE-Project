@@ -9,8 +9,10 @@ import User from './pages/User';
 import About from './pages/About';
 import Home from './pages/Home';
 import LoginScr from './pages/loginScr';
+import Logout from "./pages/Logout";
+
 import {Link, Route, Routes} from 'react-router-dom';
-//import LoginScr from "./pages/loginScr";
+
 
 function App() {
   const [userImage, setUserImage] = useState('./img/user-img.svg');
@@ -40,6 +42,8 @@ function App() {
             <Route path="/user" element={<User />} />
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<LoginScr />} />
+            <Route path="/logout" element={<Logout />} />
+
         </Routes>
       </div>
       <div className="App">

@@ -1,6 +1,6 @@
 //import logo from './logo.svg';
 //import './loginScr.css';
-import React, { useState } from "react";
+import React, {Component, useState} from "react";
 
 export default function LoginScr() {
     const username = ["test", "Cade", "Luke", "Michael"]
@@ -9,6 +9,7 @@ export default function LoginScr() {
     const [pass, setpass] = useState("")
     const [status, setstatus] = useState("")
     const [st, setst] = useState(false)
+
     const check_log = () => {
         let t = false
         for (let i = 0; i < username.length; i++) {
@@ -33,15 +34,9 @@ export default function LoginScr() {
         setuser("")
         setpass("")
     }
-    if (st){
-        return (
 
-                    <div className="Logout">
-                        <div className="LOB">
-                            <button onClick={LO}>Logout</button>
-                        </div>
-                    </div>
-        );
+    if(st){
+        return LoginScr = null
     }
     const check_reg = () => {
         let t = true
@@ -68,13 +63,12 @@ export default function LoginScr() {
     return (
 
         <div className="Title">
-            <h1>SteamTrackers
-            </h1>
+
 
             <div className="App">
 
-                <div className="Login">
-                    <h1>Login
+                <div className="Login/Register">
+                    <h1>Login/Register
                     </h1>
                     <div className="User">
                         <input type="text" placeholder="Username"
