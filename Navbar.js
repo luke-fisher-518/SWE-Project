@@ -2,11 +2,12 @@ import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import React, { useContext } from 'react';
 import UserContext from './UserContext';
 import { useState, useEffect } from 'react';
+import bcrypt from 'bcryptjs'
 
 export default function Navbar() {
     const [ch, setch] = useState(false)
     const username = ["test", "Cade", "Luke", "Michael"]
-    const password = ["password", "password", "password", "password"]
+    const password = ["$2a$10$CwTycUXWue0Thq9StjUM0uDuLhv5HLR6NolzHfzzeGFS7ckdDryDK", "$2a$10$CwTycUXWue0Thq9StjUM0uDuLhv5HLR6NolzHfzzeGFS7ckdDryDK", "$2a$10$CwTycUXWue0Thq9StjUM0uDuLhv5HLR6NolzHfzzeGFS7ckdDryDK", "$2a$10$CwTycUXWue0Thq9StjUM0uDuLhv5HLR6NolzHfzzeGFS7ckdDryDK"]
     const [user, setuser] = useState("")
     const [pass, setpass] = useState("")
     const [status, setstatus] = useState("")
@@ -16,6 +17,9 @@ export default function Navbar() {
 
 
         const check_log = () => {
+
+            const hash_pass = bcrypt.hashSync(pass, '$2a$10$CwTycUXWue0Thq9StjUM0u')
+            console.log(hash_pass)
             let alpha = /^[a-zA-Z]+$/;
             if (!alpha.test(user) && !/\d/.test(user)){
                 setstatus("Username must contain letters or numbers only.")
@@ -37,7 +41,7 @@ export default function Navbar() {
             let pp = 0
             for (let i = 0; i < username.length; i++) {
                 if (username[i] == user){
-                    if (password[i] == pass){
+                    if (password[i] == hash_pass){
                         t = !t
                         pp = i
                         break
@@ -57,6 +61,7 @@ export default function Navbar() {
 
         const check_reg = () => {
             let t = true
+            const hash_passr = bcrypt.hashSync(pass, '$2a$10$CwTycUXWue0Thq9StjUM0u')
             let alpha = /^[a-zA-Z]+$/;
             if (!alpha.test(user) && !/\d/.test(user)){
                 setstatus("Username must contain letters or numbers only.")
@@ -84,7 +89,7 @@ export default function Navbar() {
 
                 setstatus("Successful Registration")
                 console.log("Username: ", user)
-                console.log("Password: ", pass)
+                console.log("Password: ", hash_passr)
                 username.push(user)
                 password.push(pass)
             }else{
@@ -132,6 +137,7 @@ export default function Navbar() {
 
     if(ch) {
         const check = () => {
+
             setusera("")
             setch(false)
         }
