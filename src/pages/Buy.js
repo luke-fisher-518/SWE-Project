@@ -18,6 +18,10 @@ export default function Buy() {
         minPrice: 0,
         maxPrice: Infinity
     });
+    
+    const handleResetFilters = (newFilters) => {
+        setFilters(newFilters);
+    };
 
     const items = [
         { 
@@ -39,7 +43,7 @@ export default function Buy() {
             name: 'Stiletto Knife "Vanilla"', 
             price: 400.05, 
             image: stiletto, 
-            color: 'Silver', 
+            color: 'Gray', 
             previousPrice: 420.00, 
             averagePrice: 410.00, 
             minPrice: 390.00, 
@@ -84,8 +88,7 @@ export default function Buy() {
     return (
         <div>
         <SearchBar searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
-        <Filters filters={filters} handleFilterChange={handleFilterChange} />
-        <div className="items-grid">
+        <Filters filters={filters} handleFilterChange={handleFilterChange} handleResetFilters={handleResetFilters} />        <div className="items-grid">
             {filteredItems.map(item => (
                 <ItemCard key={item.id} item={item} handleItemClick={handleItemClick} />
             ))}
