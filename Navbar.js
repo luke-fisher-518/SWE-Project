@@ -16,6 +16,23 @@ export default function Navbar() {
 
 
         const check_log = () => {
+            let alpha = /^[a-zA-Z]+$/;
+            if (!alpha.test(user) && !/\d/.test(user)){
+                setstatus("Username must contain letters or numbers only.")
+                return
+            }
+            if (!alpha.test(pass) && !/\d/.test(pass)){
+                setstatus("Password must contain letters or numbers only.")
+                return
+            }
+            if (user.length < 4 || user.length > 25){
+                setstatus("Username must have between 4 and 25 characters.")
+                return
+            }
+            if (pass.length < 4 || pass.length > 25){
+                setstatus("Password must have between 4 and 25 characters.")
+                return
+            }
             let t = false
             let pp = 0
             for (let i = 0; i < username.length; i++) {
@@ -40,6 +57,23 @@ export default function Navbar() {
 
         const check_reg = () => {
             let t = true
+            let alpha = /^[a-zA-Z]+$/;
+            if (!alpha.test(user) && !/\d/.test(user)){
+                setstatus("Username must contain letters or numbers only.")
+                return
+            }
+            if (!alpha.test(pass) && !/\d/.test(pass)){
+                setstatus("Password must contain letters or numbers only.")
+                return
+            }
+            if (user.length < 4 || user.length > 25){
+                setstatus("Username must have between 4 and 25 characters.")
+                return
+            }
+            if (pass.length < 4 || pass.length > 25){
+                setstatus("Password must have between 4 and 25 characters.")
+                return
+            }
             for (let i = 0; i < username.length; i++) {
                 if (username[i] == user){
                     t = !t
