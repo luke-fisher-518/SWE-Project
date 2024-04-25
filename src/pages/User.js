@@ -24,6 +24,7 @@ const UserProfile = ({ name, accountName, image, onImageUpload, showEditor, onSc
                     onChange={onImageUpload}
                     className="file-input"
                     ref={fileInputRef}
+                    accept='image/*'
                     style={{ display: 'none' }}  // Hide the file input
                 />
             </div>
