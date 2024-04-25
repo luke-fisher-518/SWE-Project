@@ -69,12 +69,12 @@ export default function Filters({ filters, handleFilterChange, handleResetFilter
     return (
         <div className="filters">
             <span className="filter-label">Filters</span>
-            {activeFiltersCount > 1 && <span> ({activeFiltersCount - 1} active )</span>}
+            {activeFiltersCount > 1 && <span className="active-label"> ({activeFiltersCount - 1} active) </span>}
             {activeFiltersCount > 1 && (
                 <button onClick={resetFilters} className="reset-button">Reset</button>
             )}
             <div className="filter-category" onClick={() => setShowColor(!showColor)}>
-                <legend>Color</legend>
+            <legend>Color <span className={`arrow ${showColor ? 'up' : 'down'}`}>▼</span></legend>
                 {showColor && (
                     <fieldset>
                         {colorOptions.map(color => (
@@ -92,7 +92,7 @@ export default function Filters({ filters, handleFilterChange, handleResetFilter
                 )}
             </div>
             <div className="filter-category" onClick={() => setShowRarity(!showRarity)}>
-                <legend>Rarity</legend>
+            <legend>Rarity <span className={`arrow ${showRarity ? 'up' : 'down'}`}>▼</span></legend>
                 {showRarity && (
                     <fieldset>
                         {rarityOptions.map(rarity => (
@@ -110,7 +110,7 @@ export default function Filters({ filters, handleFilterChange, handleResetFilter
                 )}
             </div>
                 <div className="filter-category" onClick={() => setShowQuality(!showQuality)}>
-                <legend>Quality</legend>
+                <legend>Quality <span className={`arrow ${showQuality ? 'up' : 'down'}`}>▼</span></legend>
                 {showQuality && (
                     <fieldset>
                         {qualityOptions.map(quality => (
@@ -128,7 +128,7 @@ export default function Filters({ filters, handleFilterChange, handleResetFilter
                 )}
             </div>
             <div className="filter-category" onClick={() => setShowType(!showType)}>
-                <legend>Type</legend>
+            <legend>Type <span className={`arrow ${showType ? 'up' : 'down'}`}>▼</span></legend>
                 {showType && (
                     <fieldset>
                         {typeOptions.map(type => (
@@ -145,8 +145,9 @@ export default function Filters({ filters, handleFilterChange, handleResetFilter
                     </fieldset>
                 )}
             </div>
+            <div><span className="filter-label">Price Range</span></div>
             <input className="field-min" type="number" name="minPrice" value={filters.minPrice} onChange={handleFilterChange} placeholder="Min Price" />
-            <input className="field-max" type="number" name="maxPrice" value={filters.maxPrice} onChange={handleFilterChange} placeholder="Max Price" />
+            <input className="field-max" type="number" name="maxPrice" value={filters.maxPrice === Infinity ? "" : filters.maxPrice} onChange={handleFilterChange} placeholder="Max Price" />
         </div>
     );
 }

@@ -1,3 +1,4 @@
+// Modal.js
 import React from 'react';
 
 function getRarityColor(rarity) {
@@ -21,7 +22,7 @@ function getRarityColor(rarity) {
     }
 }
 
-const Modal = ({ item, closeModal, showBuyButton = true }) => {
+const Modal = ({ item, closeModal, showButton = true, buttonText = "Buy" }) => {
     return (
         <div className="modal" onClick={closeModal}>
             <div className="modal-content" onClick={e => e.stopPropagation()}>
@@ -41,7 +42,7 @@ const Modal = ({ item, closeModal, showBuyButton = true }) => {
                     <p>Quality: {item.quality}</p>
                 </div>
                 <div className="modal-footer">
-                    {showBuyButton && <button className="buy-button">Buy</button>}
+                    {showButton && <button className="button" onClick={() => console.log(`${buttonText} ${item.name}`)}>{buttonText}</button>}
                 </div>
             </div>
         </div>

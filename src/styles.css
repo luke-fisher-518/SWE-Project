@@ -91,16 +91,21 @@ body {
     color: white; /* Color on hover and focus */
 }
 
-
-/* Buy section */
 .container {
-    display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 2rem;
     background-color: #121217;
 }
+
+/* Buy section */
+.buy-container, .sell-container {
+    display: flex;  /* Ensures that filter and grid are flex children */
+    justify-content: space-between;  /* Distributes space between children */
+    align-items: flex-start;  /* Aligns items at the start of the flex container */
+    gap: 20px;  /* Provides space between filter and grid */
+}
+
 .item-container {
     display: grid;
     grid-template-rows: auto auto auto auto; /* Creates four rows */
@@ -111,6 +116,18 @@ body {
     border-radius: 3px; /* rounded corners */
     padding: 20px;
     margin: 10px;
+    position: relative; /* Needed for absolute positioning of the buy button */
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    align-items: end; /* Aligns content at the bottom */
+    justify-items: center; /* Center items horizontally */
+    background-color: #1C1D26; /* slightly lighter than the background */
+    border-radius: 8px; /* rounded corners */
+    padding: 20px;
+    position: relative; /* Needed for absolute positioning of the buy button */
+    height: 100%; /* Ensure all containers are of equal height */
+    transition: background-color 0.15s; /* Smooth transition for hover effect */
 }
 
 .item-image, .item-name, .item-price {
@@ -132,12 +149,12 @@ body {
 }
 
 .items-grid {
+    flex: 3;  /* Takes remaining space */
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* adjust as needed */
-    gap: 20px;
-    padding: 20px;
-    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 20px;  /* Space between items */
 }
+
 
 .item-container {
     display: grid;
@@ -174,7 +191,7 @@ body {
     margin-bottom: -10px; /* Space between price and button */
 }
 
-.buy-button {
+.button {
     font-family: Poppins, sans-serif;
     position: absolute; /* Absolute positioning relative to the container */
     bottom: 10px; /* 10px from the bottom */
@@ -188,11 +205,11 @@ body {
     transition: background-color 0.15s; /* Smooth transition for hover effect */
 }
 
-.buy-button:hover {
+.button:hover {
     background-color: #252599; /* Lighter shade of button color on hover */
 }
 
-.buy-button:active {
+.button:active {
     background-color: #1E1F8A; /* Darker shade of button color on click */
 }/* animate transition for the button */
 
@@ -226,6 +243,7 @@ body {
     max-height: 90%;
     overflow-y: auto;
     position: relative;
+
 }
 
 .modal-title {
@@ -238,7 +256,7 @@ body {
 
 .modal-body {
     color: white;
-    font-family: Poppins, sans-serif;
+    font-family: Kode Mono, monospace;
     font-style: normal;
     font-size: 12px;
     margin-bottom: 10px;
@@ -283,7 +301,6 @@ body {
     display: grid;
     grid-template-columns: 1fr 3fr; /* Adjusted to give more space to the right side containers */
     grid-template-rows: 1fr 1fr;
-    height: 100vh;
     padding: 20px;
     gap: 20px;
     background-color: #121217;
@@ -354,14 +371,24 @@ body {
 }
 
 /* Filters and Searching*/
+
+.filter-container {
+    flex: 1;  /* Allows the filter to grow */
+    min-width: 250px;  /* Minimum width before it stops shrinking */
+    max-width: 300px;  /* Maximum width it can expand to */
+    height: fit-content;  /* Fits the height to the content */
+}
+
+
 .filter-label {
-    color: white;
-    font-family: Poppins, sans-serif;
+    color: #aaa;
+    font-family: Kode Mono, monospace;
     font-size: 16px;
-    margin-bottom: 10px;
+    padding: 10px;
 }
 
 .filter-category {
+    position: sticky;
     cursor: pointer;
     padding: 10px;
     background-color: #121217;
@@ -369,6 +396,7 @@ body {
     margin-bottom: 10px;
     transition: background-color 0.3s ease;
     font-family: Kode Mono, monospace;
+    overflow-y: auto;
 }
 
 .filter-category:hover {
@@ -380,6 +408,19 @@ body {
     color: #aaa;
 }
 
+.arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.arrow.down {
+    transform: rotate(0deg);
+}
+
+.arrow.up {
+    transform: rotate(180deg);
+}
+
 .search-bar {
     padding: 10px;
     border-radius: 30px;
@@ -387,7 +428,7 @@ body {
     background-color: #1C1D26;
     color: #aaa;
     margin-bottom: 10px;
-    width: 100%;
+    width: 80%;
     font-family: Kode Mono, monospace;
 }
 .field-min, .field-max {
@@ -398,7 +439,7 @@ body {
     background-color: #1C1D26;
     color: #aaa;
     margin-bottom: 10px;
-    width: 100px;
+    width: 120px;
     font-family: Kode Mono, monospace;
 }
 
@@ -411,6 +452,39 @@ body {
     margin-right: 10px;
 
 }
+
+.reset-button {
+    padding: 5px 10px;
+    background-color: #2425DB;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+    font-family: Kode Mono, monospace;
+}
+
+.reset-button:hover {
+    background-color: #252599;
+}
+
+.reset-button:active {
+    background-color: #1E1F8A;
+}
+.active-label {
+    color: #aaa;
+    font-family: Kode Mono, monospace;
+}
+
+.pagination {
+    gap: 10px;
+    margin-top: 20px;
+}
+
+
 
 fieldset {
     margin-top: 10px;
@@ -425,9 +499,5 @@ fieldset {
 }
 
 legend {
-    font-weight: bold;
-    color: White
+    color: #aaa;
 }
-
-
-

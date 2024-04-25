@@ -73,9 +73,9 @@ const Inventory = ({ items }) => {
             <h2>Inventory</h2>
             <div className="items-grid">
                 {items.map(item => (
-                    <ItemCard item={item}  handleItemClick={handleItemClick} showBuyButton={false} />
+                    <ItemCard item={item}  handleItemClick={handleItemClick} showButton={false} />
                 ))}
-                {isModalOpen && <Modal item={selectedItem} closeModal={closeModal} showBuyButton={false}/>}
+                {isModalOpen && <Modal item={selectedItem} closeModal={closeModal} showButton={false}/>}
             </div>
         </div>
     );
@@ -96,7 +96,7 @@ const RecentActivity = ({ activities }) => {
 };
 
 export default function User() {
-    const { userImage, setUserImage, userName, setUserName, accountName, setAccountName, inventory, setInventory, recentActivity, setRecentActivity } = useContext(UserContext);
+    const { userImage, setUserImage, userName, accountName, inventory, recentActivity } = useContext(UserContext);
     const [scale, setScale] = useState(1);
     const [showEditor, setShowEditor] = useState(false);
     const editorRef = React.useRef(null);

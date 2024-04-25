@@ -10,10 +10,8 @@ export default function Navbar() {
                 <img src="./img/st-logo.svg" alt="Steam Tracker Logo" />
             </Link>
             <ul>
-                <CustomLink to="/Trade">Trade</CustomLink>
                 <CustomLink to="/Sell">Sell</CustomLink>
                 <CustomLink to="/Buy">Buy</CustomLink>
-                <CustomLink to="/About">About</CustomLink>
                 <CustomLink to="/User">
                     <img className = "user-img" src={userImage} alt="User" />
                 </CustomLink>
