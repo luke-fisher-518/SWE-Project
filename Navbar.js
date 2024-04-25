@@ -102,7 +102,7 @@ export default function Navbar() {
         return (
 
             <div className="Title">
-
+                <h1>SteamTracker</h1>
 
                 <div className="App">
 
@@ -133,9 +133,7 @@ export default function Navbar() {
     }
 
 
-
-
-    if(ch) {
+    if (ch) {
         const check = () => {
 
             setusera("")
@@ -155,24 +153,27 @@ export default function Navbar() {
                     <CustomLink to="/User">
                         <img className="user-img" src={userImage} alt="User"/>
                     </CustomLink>
-                    <div className="Butt">
-                        <text>Hi {usera}</text>
-                        <div className="Button">
-                            <button onClick={check}>Logout</button>
+                    <Link to="/" className="site-title">
+                        <div className="Butt">
+                            <text>Hi {usera}</text>
+                            <div className="Button">
+                                <button onClick={check}>Logout</button>
+                            </div>
                         </div>
-                    </div>
+                    </Link>
+
                 </ul>
 
 
             </nav>
-    );
+        );
     }
 
-    }
+}
 
-    function CustomLink({to, children, ...props}) {
+function CustomLink({to, children, ...props}) {
     const resolvedPath = useResolvedPath(to);
-    const isActive = useMatch({ path: resolvedPath.pathname, end: true });
+    const isActive = useMatch({path: resolvedPath.pathname, end: true });
 
     return (
         <li className={isActive ? "active" : ""}>
