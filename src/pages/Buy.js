@@ -12,8 +12,8 @@ export default function Buy() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
-    const [pageType, setPageType] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
+    const [pageType, setPageType] = useState('buy');
     const itemsPerPage = 20;
     const [filters, setFilters] = useState({
         color: '',
@@ -37,7 +37,7 @@ export default function Buy() {
     const handleItemClick = (item, pageType) => {
         setSelectedItem(item);
         setIsModalOpen(true);
-        setPageType(pageType);
+        setPageType(pageType);  // Assuming you have a state called pageType
     };
 
     const closeModal = () => {
@@ -45,7 +45,7 @@ export default function Buy() {
     };
 
     const handleSearchChange = (event) => {
-        setSearchTerm(event.target.value.toLowerCase()); // Convert search term to lower case for case insensitive matching
+        setSearchTerm(event.target.value);
     };
 
     const handleFilterChange = (event) => {
@@ -64,12 +64,15 @@ export default function Buy() {
     };
 
     const filteredItems = items.filter(item => {
-        // Checks if any item attribute includes the search term
-        const searchFields = [item.name, item.color, item.rarity, item.quality, item.type].join(' ').toLowerCase();
-        return searchFields.includes(searchTerm)
+        return item.name.toLowerCase().includes(searchTerm.toLowerCase())
+            && item.color.toLowerCase().includes(filters.color.toLowerCase())
+            && item.rarity.toLowerCase().includes(filters.rarity.toLowerCase())
+            && item.quality.toLowerCase().includes(filters.quality.toLowerCase())
+            && item.type.toLowerCase().includes(filters.type.toLowerCase())
             && item.price >= (filters.minPrice || 0)
             && item.price <= (filters.maxPrice || Infinity);
     });
+    
 
     const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
 
@@ -84,6 +87,7 @@ export default function Buy() {
     };
 
     return (
+        
         <div>
             <SearchBar searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
             <div className='buy-container'>
@@ -96,7 +100,7 @@ export default function Buy() {
                         ))}
                         {isModalOpen && <Modal item={selectedItem} closeModal={closeModal} />}
                 </div>
-                <div className="pagination">
+                    <div className="pagination">
                     <button onClick={goToPreviousPage} disabled={currentPage === 1}>Previous</button>
                     <span>Page {currentPage} of {totalPages}</span>
                     <button onClick={goToNextPage} disabled={currentPage === totalPages}>Next</button>
