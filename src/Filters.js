@@ -35,7 +35,7 @@ export default function Filters({ filters, handleFilterChange, handleResetFilter
     const [activeFiltersCount, setActiveFiltersCount] = useState(0);
 
 
-    const colorOptions = ["Red", "Orange", "Blue", "Gold", "Yellow", "Green", "Blue", "Cyan", "Purple", "Pink", "Brown", "Black", "Gray", "White" ];
+    const colorOptions = ["Red", "Orange", "Blue", "Gold", "Yellow", "Green", "Cyan", "Purple", "Pink", "Brown", "Black", "Gray", "White" ];
     const rarityOptions = ["Consumer Grade", "Base Grade", "Industrial Grade", "Mil-Spec", "High Grade", "Restricted", "Remarkable", "Classified", "Exotic", "Covert", "Extraordinary", "Contraband"];
     const qualityOptions = ["Factory New", "Minimal Wear", "Field-Tested", "Well-Worn", "Battle-Scarred"];
     const typeOptions = ["SMG", "Rifle", "Pistol", "Knife", "Heavy", "Gloves"];
