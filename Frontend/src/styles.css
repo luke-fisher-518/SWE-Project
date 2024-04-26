@@ -1,0 +1,503 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Robot9000';
+    src: url('./fonts/Robot9000.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Kode Mono';
+    src: url('./fonts/KodeMono.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+body {
+    margin: 0;
+    width: 100%;
+}
+
+/*Navbar css*/
+.nav {
+    background-color: #121217;
+    color: white;
+    display: flex;
+    font: 24px Poppins, monospace;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 0 1rem;
+    gap: 2rem;
+    transition: 0.3s;
+}
+
+.nav ul {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    list-style-type: none;
+    gap: 1rem;
+}
+
+.site-title {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+}
+
+.site-title img {
+    height: 120px; /* or your desired height */
+    width: auto;  /* maintains aspect ratio */
+}
+
+.nav a {
+    color: #6c6a77; /* Lighter than the background but not white */
+    text-decoration: none;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s; /* Smooth transition for hover effect */
+}
+
+.nav a:hover, .nav a.active {
+    color: white; /* Text becomes white on hover or when active */
+}
+
+.nav a, .nav a:hover, .nav a:focus {
+    color: #6c6a77; /* Default state color */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem; /* Increased padding for better touch targets */
+}
+
+.nav li.active a {
+    border-top: 3px solid #4d4de0; /* Purple bar on top of the active link */
+}
+
+.nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.nav a:hover, .nav a:focus {
+    color: white; /* Color on hover and focus */
+}
+
+.container {
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #121217;
+}
+
+/* Buy section */
+.buy-container, .sell-container {
+    display: flex;  /* Ensures that filter and grid are flex children */
+    justify-content: space-between;  /* Distributes space between children */
+    align-items: flex-start;  /* Aligns items at the start of the flex container */
+    gap: 20px;  /* Provides space between filter and grid */
+}
+
+.item-container {
+    display: grid;
+    grid-template-rows: auto auto auto auto; /* Creates four rows */
+    grid-gap: 10px; /* Space between grid items */
+    align-items: center; /* Center items vertically */
+    justify-items: center; /* Center items horizontally */
+    background-color: #1C1D26; /* slightly lighter than the background */
+    border-radius: 3px; /* rounded corners */
+    padding: 20px;
+    margin: 10px;
+    position: relative; /* Needed for absolute positioning of the buy button */
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    align-items: end; /* Aligns content at the bottom */
+    justify-items: center; /* Center items horizontally */
+    background-color: #1C1D26; /* slightly lighter than the background */
+    border-radius: 8px; /* rounded corners */
+    padding: 20px;
+    position: relative; /* Needed for absolute positioning of the buy button */
+    height: 100%; /* Ensure all containers are of equal height */
+    transition: background-color 0.15s; /* Smooth transition for hover effect */
+}
+
+.item-image, .item-name, .item-price {
+    max-width: 100%; /* This will ensure that the content does not exceed the width of the container */
+    height: auto; /* This will maintain the aspect ratio of the images */
+}
+
+.item-name {
+    color: #aaa; /* slightly lighter color */
+    font-size: 10pt;
+    font: Poppins, sans-serif;
+    margin-top: 0px; /* Space between image and name */
+}
+
+.item-price {
+    color: white;
+    font: Poppins, sans-serif;
+    font-size: 18pt;
+}
+
+.items-grid {
+    flex: 3;  /* Takes remaining space */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 20px;  /* Space between items */
+}
+
+
+.item-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    align-items: end; /* Aligns content at the bottom */
+    justify-items: center; /* Center items horizontally */
+    background-color: #1C1D26; /* slightly lighter than the background */
+    border-radius: 8px; /* rounded corners */
+    padding: 20px;
+    position: relative; /* Needed for absolute positioning of the buy button */
+    height: 100%; /* Ensure all containers are of equal height */
+    transition: background-color 0.15s; /* Smooth transition for hover effect */
+}
+
+.item-image {
+    grid-row: 1 / 2;
+    max-width: 80%; /* Limits image width, adjust as needed */
+    max-height: 150px; /* Limits image height, adjust for your needs */
+    object-fit: contain; /* Ensures the image maintains aspect ratio */
+    justify-self: center; /* Center the image horizontally */
+}
+
+.item-name, .item-price {
+    font-family: Poppins, sans-serif;
+    grid-column: 1;
+    justify-self: start; /* Align text to the start (left) */
+    align-self: end; /* Align text to the bottom */
+    width: 100%; /* Ensure text spans the full width */
+}
+
+.item-price {
+    margin-top: -10px; /* Space between name and price */
+    margin-bottom: -10px; /* Space between price and button */
+}
+
+.button {
+    font-family: Poppins, sans-serif;
+    position: absolute; /* Absolute positioning relative to the container */
+    bottom: 10px; /* 10px from the bottom */
+    right: 10px; /* 10px from the right */
+    padding: 10px 20px; /* Padding for aesthetics */
+    background-color: #2425DB; /* Button color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.15s; /* Smooth transition for hover effect */
+}
+
+.button:hover {
+    background-color: #252599; /* Lighter shade of button color on hover */
+}
+
+.button:active {
+    background-color: #1E1F8A; /* Darker shade of button color on click */
+}/* animate transition for the button */
+
+
+.item-container:hover {
+    background-color: #313244; /* Lighter shade of background color on hover */
+    cursor: pointer;
+    transition: 0.3s;
+    transform: scale(1.05); /* Slightly larger size on hover */
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: 0.3s;
+}
+
+.modal-content {
+    background-color: #1C1D26;
+    padding: 20px;
+    border-radius: 5px;
+    width: 500px;
+    max-height: 90%;
+    overflow-y: auto;
+    position: relative;
+
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: white;
+    font-family: Poppins, sans-serif;
+}
+
+.modal-body {
+    color: white;
+    font-family: Kode Mono, monospace;
+    font-style: normal;
+    font-size: 12px;
+    margin-bottom: 10px;
+    img {
+        width: 200px;
+        height: auto;
+        border-radius: 5px;
+    }
+}
+
+.modal-header, .modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header {
+    border-bottom: 1px solid #ddd;
+}
+
+.modal-footer {
+    border-top: 1px solid #1C1D26;
+}
+
+.close-button {
+    cursor: pointer;
+}
+
+/* Profile section */
+.user-img {
+    /*add border*/
+    border: 3px solid #6c6a77;
+    height: 30px;
+    width: 30px;
+    object-fit: cover; /* Ensures the image covers the area, useful if the images aren't perfectly square */
+    border-radius: 50%;  /* Optional: makes the image round */
+    background-color: #000; /* Fallback color */
+}
+
+.user-container {
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 3fr; /* Adjusted to give more space to the right side containers */
+    grid-template-rows: 1fr 1fr;
+    padding: 20px;
+    gap: 20px;
+    background-color: #121217;
+    align-items: start;
+}
+
+.user-profile-container {
+    grid-row: 1 / 3;
+    background-color: #262734;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+}
+
+.inventory-container, .recent-activity-container {
+    display: flex;
+    flex-direction: column;
+    grid-column: 2;
+    background-color: #262734;
+    border-radius: 8px;
+    padding: 20px;
+    overflow-y: auto;
+    height: 100%;
+}
+
+.recent-activity-container {
+    grid-row: 2;
+}
+
+/* Styling for images and buttons remain the same */
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.profile-image:hover {
+    transform: scale(1.1);
+}
+
+.save-button {
+    padding: 10px 20px;
+    margin: 10px 0;
+    background-color: #2425DB;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+    background-color: #252599;
+}
+
+.save-button:active {
+    background-color: #1E1F8A;
+}
+
+/* Filters and Searching*/
+
+.filter-container {
+    flex: 1;  /* Allows the filter to grow */
+    min-width: 250px;  /* Minimum width before it stops shrinking */
+    max-width: 300px;  /* Maximum width it can expand to */
+    height: fit-content;  /* Fits the height to the content */
+}
+
+
+.filter-label {
+    color: #aaa;
+    font-family: Kode Mono, monospace;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.filter-category {
+    position: sticky;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #121217;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+    font-family: Kode Mono, monospace;
+    overflow-y: auto;
+}
+
+.filter-category:hover {
+    background-color: #121217;
+}
+
+.filter-category.active {
+    background-color: #2425DB;
+    color: #aaa;
+}
+
+.arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.arrow.down {
+    transform: rotate(0deg);
+}
+
+.arrow.up {
+    transform: rotate(180deg);
+}
+
+.search-bar {
+    padding: 10px;
+    border-radius: 30px;
+    border: 1px solid #1C1D26;
+    background-color: #1C1D26;
+    color: #aaa;
+    margin-bottom: 10px;
+    width: 80%;
+    font-family: Kode Mono, monospace;
+}
+.field-min, .field-max {
+    grid-template-columns: auto;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #1C1D26;
+    background-color: #1C1D26;
+    color: #aaa;
+    margin-bottom: 10px;
+    width: 120px;
+    font-family: Kode Mono, monospace;
+}
+
+.field-min:focus, .field-max:focus {
+    outline: none;
+    border: 1px solid #2425DB;
+}
+
+.field-min {
+    margin-right: 10px;
+
+}
+
+.reset-button {
+    padding: 5px 10px;
+    background-color: #2425DB;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+    font-family: Kode Mono, monospace;
+}
+
+.reset-button:hover {
+    background-color: #252599;
+}
+
+.reset-button:active {
+    background-color: #1E1F8A;
+}
+.active-label {
+    color: #aaa;
+    font-family: Kode Mono, monospace;
+}
+
+.pagination {
+    gap: 10px;
+    margin-top: 20px;
+}
+
+
+
+fieldset {
+    margin-top: 10px;
+    /* order vertically */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: #aaa;
+    font-family: Kode Mono, monospace;
+    /* No border*/
+    border: none;
+}
+
+legend {
+    color: #aaa;
+}
