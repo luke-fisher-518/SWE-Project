@@ -101,9 +101,9 @@ export default function Buy() {
                         {isModalOpen && <Modal item={selectedItem} closeModal={closeModal} />}
                 </div>
                     <div className="pagination">
-                    <button onClick={goToPreviousPage} disabled={currentPage === 1}>Previous</button>
-                    <span>Page {currentPage} of {totalPages}</span>
-                    <button onClick={goToNextPage} disabled={currentPage === totalPages}>Next</button>
+                    <button classname="prev" onClick={goToPreviousPage} disabled={currentPage === 1}>Previous</button>
+                    <span className='page-number'>Page {currentPage} of {totalPages}</span>
+                    <button className= "next" onClick={goToNextPage} disabled={currentPage === totalPages}>Next</button>
                 </div>
             </div>
         </div>

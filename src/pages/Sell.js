@@ -51,25 +51,14 @@ export default function Sell() {
     };
 
     const filteredItems = inventory.filter(item => {
-        // Converts search term to lowercase once
-        const searchLower = searchTerm.toLowerCase();
-    
-        // Concatenate attributes you want to search in and convert to lowercase
-        const searchFields = [
-            item.name, 
-            item.color, 
-            item.rarity, 
-            item.quality, 
-            item.type
-        ].join(' ').toLowerCase();
-    
-        // Additional filters for price range
-        const matchesPriceRange = item.price >= (filters.minPrice || 0) && item.price <= (filters.maxPrice || Infinity);
-    
-        // Check if concatenated fields contain the search term and meet other filter criteria
-        return searchFields.includes(searchLower) && matchesPriceRange;
+        return item.name.toLowerCase().includes(searchTerm.toLowerCase())
+            && item.color.toLowerCase().includes(filters.color.toLowerCase())
+            && item.rarity.toLowerCase().includes(filters.rarity.toLowerCase())
+            && item.quality.toLowerCase().includes(filters.quality.toLowerCase())
+            && item.type.toLowerCase().includes(filters.type.toLowerCase())
+            && item.price >= filters.minPrice
+            && item.price <= filters.maxPrice;
     });
-    
 
     const endIndex = currentPage * itemsPerPage;
     const startIndex = endIndex - itemsPerPage;
